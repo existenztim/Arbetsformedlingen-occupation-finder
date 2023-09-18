@@ -17,17 +17,32 @@ import {
   DigiFormTextareaCustomEvent,
 } from "@digi/arbetsformedlingen/dist/types/components";
 import { FormEvent, useState } from "react";
+import { postOccupationMatchesByText } from "../services/AFservice";
 
 export const Form = () => {
   const [input, setInput] = useState("");
   const [textArea, setTextArea] = useState("");
+  const [error, setError] = useState("");
 
-  const searchMatch = (e: FormEvent<HTMLFormElement>) => {
+  const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      const response = await postOccupationMatchesByText({
+        input_text: input,
+        input_headline: textArea,
+        limit: 10,
+        offset: 0,
+        include_metadata: false,
+      });
+      setError("");
+      console.log(response);
+    } catch (error) {
+      setError("Sökningen misslyckades försök igen");
+    }
   };
 
   const handleInputChange = (e: DigiFormInputCustomEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setInput(e.target.value.toString());
   };
 
@@ -35,7 +50,6 @@ export const Form = () => {
     e: DigiFormTextareaCustomEvent<HTMLTextAreaElement>
   ) => {
     setTextArea(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -66,6 +80,8 @@ export const Form = () => {
           Sök matchande yrken
         </DigiButton>
       </form>
+
+      {error ? <div>{error}</div> : <div>resultat</div>}
     </div>
   );
 };
