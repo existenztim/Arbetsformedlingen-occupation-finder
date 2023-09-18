@@ -1,17 +1,8 @@
-
-import { DigiButton } from '@digi/arbetsformedlingen-react'
-import './App.css'
+import "./App.css";
+import { Form } from "./components/Form";
 
 function App() {
-
-
-  return (
-    <>
-    <h1>TriForce</h1>
-   <DigiButton>Tjena</DigiButton>
-   <button>Tjena vanlig knapp</button>
-    </>
-  )
+  return <Form />;
 }
 
-export default App
+export default App;
