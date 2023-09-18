@@ -1,3 +1,8 @@
+import "./App.css";
+import { Form } from "./components/Form";
+import Header from "./components/Header";
+
+function App() {
 
 import "./App.css";
 import { Form } from "./components/Form";
@@ -40,7 +45,6 @@ function App() {
       <DigiButton 
        afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchCompetencies}>GET competencies - se konsolen för resultat
       </DigiButton>
-
     </>
   );
 }
