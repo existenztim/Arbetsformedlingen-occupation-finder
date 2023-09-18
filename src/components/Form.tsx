@@ -1,6 +1,6 @@
+import "../styles/form.css";
 import {
   ButtonSize,
-  ButtonVariation,
   FormInputType,
   FormInputValidation,
   FormInputVariation,
@@ -39,10 +39,11 @@ export const Form = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSearch}>
         <DigiFormInput
-          afLabel="Etikett"
+          className="form-input"
+          afLabel="sök på utbildningstitel"
           afVariation={FormInputVariation.MEDIUM}
           afType={FormInputType.TEXT}
           afValidation={FormInputValidation.NEUTRAL}
@@ -50,7 +51,7 @@ export const Form = () => {
           value={input}
         ></DigiFormInput>
         <DigiFormTextarea
-          afLabel="Etikett"
+          afLabel="sök på utbildningsbeskrivning"
           afVariation={FormTextareaVariation.MEDIUM}
           afValidation={FormTextareaValidation.NEUTRAL}
           onAfOnInput={handleTextAreaChange}
@@ -58,9 +59,9 @@ export const Form = () => {
         ></DigiFormTextarea>
         <DigiButton
           afSize={ButtonSize.LARGE}
-          afVariation={ButtonVariation.PRIMARY}
           afFullWidth={false}
           afType="submit"
+          className="form-button"
         >
           Sök matchande yrken
         </DigiButton>
