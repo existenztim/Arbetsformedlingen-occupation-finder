@@ -1,12 +1,12 @@
 import axios from "axios";
 import { IMatch } from "../models/IMatch";
-import { IOccupationQuery } from "../models/IOccupationQuary";
+import { ICompetenceQuery, IMatchQuery } from "../models/IQuery";
 import { ICompetencies } from "../models/ICompetencies";
 
 const baseUrl = 'https://jobed-connect-api.jobtechdev.se/v1/';
 
 //POST -> /v1/occupations/match-by-text
-export const postOccupationMatchesByText = async (data:IOccupationQuery) => {
+export const postOccupationMatchesByText = async (data:IMatchQuery) => {
     const path = 'occupations/match-by-text';
     
     const query = {
@@ -22,16 +22,14 @@ export const postOccupationMatchesByText = async (data:IOccupationQuery) => {
   };
 
 //GET -> /v1/enriched_occupations
-export const getCompetenciesByOccupationId = async () => {
+export const getCompetenciesByOccupationId = async (data:ICompetenceQuery) => {
     const path = 'enriched_occupations';
 
     const query = {
-        occupation_id: 'fg7B_yov_smw',
-        include_metadata: true
+        occupation_id: data.occupation_id,
+        include_metadata: data.include_metadata
     };
+
     const response = await axios.get<ICompetencies>(`${baseUrl}${path}`, {params: query});
     return response;
 }
-
-//https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?input_text=frontend&input_headline=utvecklare&limit=10&offset=0&include_metadata=false
-//https://jobed-connect-api.jobtechdev.se/v1/enriched_occupations?occupation_id=fg7B_yov_smw&include_metadata=true

@@ -22,7 +22,7 @@ function App() {
 
   const searchCompetencies = async () => {
     try {
-      const result = await getCompetenciesByOccupationId();
+      const result = await getCompetenciesByOccupationId({occupation_id: "fg7B_yov_smw", include_metadata:true});
       console.log(result.data);
     } catch (error) {
       console.error("Error:", error);
