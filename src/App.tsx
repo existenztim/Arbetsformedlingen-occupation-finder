@@ -1,7 +1,8 @@
 
 import { DigiButton } from '@digi/arbetsformedlingen-react'
 import './App.css'
-import { postOccupationMatchesByText } from './services/AFservice'
+import { getCompetenciesByOccupationId, postOccupationMatchesByText } from './services/AFservice'
+import * as AF from '@digi/arbetsformedlingen';
 
 function App() {
   const searchMatches = async () => {
@@ -19,10 +20,24 @@ function App() {
     }
   }
 
+  const searchCompetencies = async () => {
+    try {
+      const result = await getCompetenciesByOccupationId();
+      console.log(result.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   return (
     <>
     <h1>TriForce</h1>
-   <DigiButton onClick={searchMatches}>POST - se konsolen för resultat</DigiButton>
+   <DigiButton 
+    afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchMatches}>POST occupations - se konsolen för resultat
+   </DigiButton>
+   <DigiButton 
+    afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchCompetencies}>GET competencies - se konsolen för resultat
+   </DigiButton>
     </>
   )
 }
