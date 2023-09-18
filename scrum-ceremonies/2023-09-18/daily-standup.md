@@ -1,19 +1,17 @@
-# Daily Standup Report
-Mall...
-
+# Daily Standup Report Måndag 18e
     
 # Reflektion gårdagen   
 
-Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
+Vi fick en bra grund när vi pratade igenom uppgiften ihop och gjorde wireframe.
 
 # Tim
 
-Projekt inlett
+Undersökt endpointsen för att förstå vilka som är relevanta för att få fram relaterade kompetenser, samt hur vi kan visuallisera det grafiskt.
 
 # Veronica
 
-Projekt 
+Titat på api:et och gjort ett interface av informationen vi får. 
 
 # mattias
 
-Projekt inlett
+Instämmer med tidigare talare.
