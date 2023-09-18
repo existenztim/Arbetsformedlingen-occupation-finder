@@ -22,7 +22,7 @@ export const Form = () => {
   const [input, setInput] = useState("");
   const [textArea, setTextArea] = useState("");
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  const searchMatch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -40,7 +40,7 @@ export const Form = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSearch}>
+      <form onSubmit={searchMatch}>
         <DigiFormInput
           className="form-input"
           afLabel="sök på utbildningstitel"
