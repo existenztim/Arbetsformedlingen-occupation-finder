@@ -1,11 +1,13 @@
 
-import { DigiButton } from '@digi/arbetsformedlingen-react'
-import './App.css'
-import { getCompetenciesByOccupationId, postOccupationMatchesByText } from './services/AFservice'
+import "./App.css";
+import { Form } from "./components/Form";
+import Header from "./components/Header";
+import { DigiButton } from '@digi/arbetsformedlingen-react';
+import { getCompetenciesByOccupationId, postOccupationMatchesByText } from './services/AFservice';
 import * as AF from '@digi/arbetsformedlingen';
 
 function App() {
-  const searchMatches = async () => {
+    const searchMatches = async () => {
     try {
       const result = await postOccupationMatchesByText({
         input_text: "frontend", 
@@ -28,18 +30,19 @@ function App() {
       console.error("Error:", error);
     }
   }
-
   return (
     <>
-    <h1>TriForce</h1>
-   <DigiButton 
-    afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchMatches}>POST occupations - se konsolen för resultat
-   </DigiButton>
-   <DigiButton 
-    afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchCompetencies}>GET competencies - se konsolen för resultat
-   </DigiButton>
+      <Header />
+      <Form />
+      <DigiButton 
+      afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchMatches}>POST occupations - se konsolen för resultat
+      </DigiButton>
+      <DigiButton 
+       afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchCompetencies}>GET competencies - se konsolen för resultat
+      </DigiButton>
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;
