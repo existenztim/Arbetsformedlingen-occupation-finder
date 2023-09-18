@@ -19,6 +19,7 @@ import {
 import { FormEvent, useState } from "react";
 import { postOccupationMatchesByText } from "../services/AFservice";
 
+
 export const Form = () => {
   const [input, setInput] = useState("");
   const [textArea, setTextArea] = useState("");
@@ -55,6 +56,7 @@ export const Form = () => {
   return (
     <div className="form-container">
       <form onSubmit={searchMatch}>
+
         <DigiFormInput
           className="form-input"
           afLabel="sök på utbildningstitel"
@@ -80,8 +82,8 @@ export const Form = () => {
           Sök matchande yrken
         </DigiButton>
       </form>
-
       {error ? <div>{error}</div> : <div>resultat</div>}
+
     </div>
   );
 };
