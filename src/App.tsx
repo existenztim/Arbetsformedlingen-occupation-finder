@@ -15,6 +15,7 @@ function App() {
   const handleRangeChange = (value: number) => {
     if (responseData) {
       setResponseData({ ...responseData, hits_returned: +value });
+      console.log("respons",responseData)
     }
   }
 
