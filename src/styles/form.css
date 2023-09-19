@@ -7,6 +7,11 @@
   margin-top: 1rem;
 }
 
+.loader {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 /* .form-button {
   background-color: #0e957c; 
   display: flex;

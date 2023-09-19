@@ -6,11 +6,13 @@ import {
   FormInputVariation,
   FormTextareaValidation,
   FormTextareaVariation,
+  LoaderSpinnerSize,
 } from '@digi/arbetsformedlingen'
 import {
   DigiButton,
   DigiFormInput,
   DigiFormTextarea,
+  DigiLoaderSpinner,
 } from '@digi/arbetsformedlingen-react'
 import {
   DigiFormInputCustomEvent,
@@ -28,11 +30,13 @@ export const Form = (props: ChildProps) => {
   const [input, setInput] = useState('')
   const [textArea, setTextArea] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {
+      setLoading(true);
       const response = await postOccupationMatchesByText({
         input_text: textArea,
         input_headline: input,
@@ -45,6 +49,8 @@ export const Form = (props: ChildProps) => {
       props.onSearchMatch(response)
     } catch (error) {
       setError('Sökningen misslyckades försök igen')
+    } finally {
+      setLoading(false); 
     }
   }
 
@@ -87,6 +93,7 @@ export const Form = (props: ChildProps) => {
         </DigiButton>
       </form>
       {error ? <div>{error}</div> : <div>resultat</div>}
+      {loading && <div className="loader"><DigiLoaderSpinner afSize={LoaderSpinnerSize.LARGE} /></div>} {/* Conditionally render the loader */}
     </div>
   )
 }
