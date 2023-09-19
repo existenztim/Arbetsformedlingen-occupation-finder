@@ -16,7 +16,7 @@ export const postOccupationMatchesByText = async (data: IMatchQuery) => {
     offset: data.offset,
     include_metadata: data.include_metadata,
   }
-  // throw new Error();
+
   const response = await axios.post<IMatch>(`${baseUrl}${path}`, query)
   return response.data
 }

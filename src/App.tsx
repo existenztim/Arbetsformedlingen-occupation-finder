@@ -5,10 +5,7 @@ import './App.css'
 import { Form } from './components/Form'
 import Header from './components/Header'
 import  SearchResults  from './components/SearchResults'
-import {
-  getCompetenciesByOccupationId,
-  postOccupationMatchesByText,
-} from './services/AFservice'
+import {getCompetenciesByOccupationId } from './services/AFservice'
 import * as AF from '@digi/arbetsformedlingen'
 
 function App() {
@@ -47,6 +44,7 @@ function App() {
       console.error('Error:', error)
     }
   }
+  
   return (
     <>
       <Header />
