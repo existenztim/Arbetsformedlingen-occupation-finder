@@ -4,11 +4,12 @@
     align-items: center;
     max-width: 800px;
     width: 100%;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 p {
-    width: 150px;
+    width: 240px;
+    font-weight: bold;
 }
 
 .range-bar {

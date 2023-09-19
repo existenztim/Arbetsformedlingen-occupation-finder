@@ -16,6 +16,7 @@ function App() {
     if (responseData) {
       setResponseData({ ...responseData, hits_returned: +value });
       console.log("respons",responseData)
+      //behöver göra ett api anrop till service?
     }
   }
 

@@ -22,14 +22,14 @@ const RangeBar = (props: RangeBarProps) => {
 
   return (
     <div className="range-container">
-      <p>Antal träffar: {props.responseData?.hits_returned}</p>
-      <p>Max antal träffar {props.responseData?.hits_total}</p>
+      <p>Antal visade resultat: {props.responseData?.hits_returned}</p>
+      <p>Max antal resultat hittade: {props.responseData?.hits_total}</p>
       <div className="range-bar">
         <p className="range-value">{rangeValue}</p>
         <input
             type="range"
             min="1"
-            max="20"
+            max="100"
             defaultValue="10"
             onMouseUp={handleMouseUp}
             onChange={handleRangeChange}
