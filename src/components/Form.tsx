@@ -79,7 +79,7 @@ export const Form = ( { onSearch, onSearchMatch }: FormProps) => {
       <form onSubmit={searchMatch}>
         <DigiFormInput
           className="form-input"
-          afLabel="sök på utbildningstitel"
+          afLabel="Sök på utbildningstitel"
           afVariation={FormInputVariation.MEDIUM}
           afType={FormInputType.TEXT}
           afValidation={FormInputValidation.NEUTRAL}
@@ -87,7 +87,7 @@ export const Form = ( { onSearch, onSearchMatch }: FormProps) => {
           value={formInput.input}
         ></DigiFormInput>
         <DigiFormTextarea
-          afLabel="sök på utbildningsbeskrivning"
+          afLabel="Sök på utbildningsbeskrivning"
           afVariation={FormTextareaVariation.MEDIUM}
           afValidation={FormTextareaValidation.NEUTRAL}
           onAfOnInput={handleTextAreaChange}
@@ -102,7 +102,7 @@ export const Form = ( { onSearch, onSearchMatch }: FormProps) => {
           Sök matchande yrken
         </DigiButton>
       </form>
-      {formInput.error ? <div>{formInput.error}</div> : <div>resultat</div>}
+      {formInput.error && <div>{formInput.error}</div>}
       {loading && <div className="loader"><DigiLoaderSpinner afSize={LoaderSpinnerSize.LARGE} /></div>}
     </div>
   )
