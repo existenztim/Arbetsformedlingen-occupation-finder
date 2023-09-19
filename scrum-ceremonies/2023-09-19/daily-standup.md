@@ -1,19 +1,17 @@
-# Daily Standup Report
-Mall...
-
+# Daily Standup Report tisdag 19e
     
 # Reflektion gårdagen   
 
-Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
+Yesterday I…, today I will…, I need help with…, I'm stuck with…
 
 # Tim
 
-Projekt inlett
+Fixat POST och GET service, börjar med pagination. 
 
 # Veronica
 
-Projekt 
+Gjort form komponenten, fyllde på visuell error respons, + header, satt sig in i AF:s custom eents.
 
-# mattias
+# Mattias
 
-Projekt inlett
+Skickat en trigger till results komponenten. Ska fixa ett typ error som uppstått. 

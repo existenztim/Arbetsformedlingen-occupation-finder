@@ -12,6 +12,6 @@ Undersökt endpointsen för att förstå vilka som är relevanta för att få fr
 
 Titat på api:et och gjort ett interface av informationen vi får. 
 
-# mattias
+# Mattias
 
 Instämmer med tidigare talare.
