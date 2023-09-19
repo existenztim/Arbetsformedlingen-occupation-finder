@@ -1,38 +1,32 @@
-import { DigiButton } from '@digi/arbetsformedlingen-react'
 import './App.css'
 import { Form } from './components/Form'
 import Header from './components/Header'
-import {getCompetenciesByOccupationId } from './services/AFservice'
-import * as AF from '@digi/arbetsformedlingen'
+import RangeBar from './components/RangeBar'
+import { useState } from 'react'
+import { IMatch } from './models/IMatch'
 
 function App() {
- 
-  const searchCompetencies = async () => {
-    try {
-      const result = await getCompetenciesByOccupationId({
-        occupation_id: 'fg7B_yov_smw',
-        include_metadata: true,
-      })
-      console.log(result.data)
-    } catch (error) {
-      console.error('Error:', error)
+  const [responseData, setResponseData] = useState<IMatch>()
+
+  const handleResponse = (data: IMatch) => {
+    setResponseData(data)
+  }
+
+  const handleRangeChange = (value: number) => {
+    if (responseData) {
+      setResponseData({ ...responseData, hits_returned: +value });
+      console.log("respons",responseData)
+      //behöver göra ett api anrop till service?
     }
   }
-  
+
   return (
     <>
       <Header />
-      <Form />
-      <DigiButton
-        afSize={AF.ButtonSize.MEDIUM}
-        afVariation={AF.ButtonVariation.PRIMARY}
-        afFullWidth={false}
-        onClick={searchCompetencies}
-      >
-        GET competencies - se konsolen för resultat
-      </DigiButton>
+      <Form onSearchMatch={handleResponse} />
+      {responseData && (<RangeBar responseData={responseData} onRangeChange={handleRangeChange} />)}
     </>
   )
 }
 
-export default App
+export default App;
