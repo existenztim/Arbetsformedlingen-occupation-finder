@@ -18,9 +18,14 @@ import {
 } from "@digi/arbetsformedlingen/dist/types/components";
 import { FormEvent, useState } from "react";
 import { postOccupationMatchesByText } from "../services/AFservice";
+import { IMatch } from "../models/IMatch";
 
+interface FormProps {
+  onSearch: (result: IMatch) => void;
+}
 
-export const Form = () => {
+export const Form = ( { onSearch }: FormProps) => {
+
   const [input, setInput] = useState("");
   const [textArea, setTextArea] = useState("");
   const [error, setError] = useState("");
@@ -38,6 +43,7 @@ export const Form = () => {
       });
       setError("");
       console.log(response);
+      onSearch(response);
     } catch (error) {
       setError("Sökningen misslyckades försök igen");
     }

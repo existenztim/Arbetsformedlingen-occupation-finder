@@ -1,7 +1,10 @@
 import { DigiButton } from '@digi/arbetsformedlingen-react'
+import { useState } from 'react'
+import { IMatch } from './models/IMatch'
 import './App.css'
 import { Form } from './components/Form'
 import Header from './components/Header'
+import  SearchResults  from './components/SearchResults'
 import {
   getCompetenciesByOccupationId,
   postOccupationMatchesByText,
@@ -9,6 +12,13 @@ import {
 import * as AF from '@digi/arbetsformedlingen'
 
 function App() {
+
+  const [results, setResults] = useState<IMatch>();
+
+  const onSearch = (incomingResult: IMatch): void => {
+    setResults(incomingResult)
+  }
+  
   const searchMatches = async () => {
     try {
       const result = await postOccupationMatchesByText({
@@ -25,6 +35,7 @@ function App() {
     }
   }
 
+
   const searchCompetencies = async () => {
     try {
       const result = await getCompetenciesByOccupationId({
@@ -39,7 +50,10 @@ function App() {
   return (
     <>
       <Header />
-      <Form />
+      <Form onSearch={onSearch}/>
+
+     {results ? <SearchResults result={results} /> : null} 
+
       <DigiButton
         afSize={AF.ButtonSize.MEDIUM}
         afVariation={AF.ButtonVariation.PRIMARY}
