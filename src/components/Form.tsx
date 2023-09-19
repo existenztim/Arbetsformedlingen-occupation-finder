@@ -1,4 +1,4 @@
-import "../styles/form.css";
+import '../styles/form.css'
 import {
   ButtonSize,
   FormInputType,
@@ -6,57 +6,61 @@ import {
   FormInputVariation,
   FormTextareaValidation,
   FormTextareaVariation,
-} from "@digi/arbetsformedlingen";
+} from '@digi/arbetsformedlingen'
 import {
   DigiButton,
   DigiFormInput,
   DigiFormTextarea,
-} from "@digi/arbetsformedlingen-react";
+} from '@digi/arbetsformedlingen-react'
 import {
   DigiFormInputCustomEvent,
   DigiFormTextareaCustomEvent,
-} from "@digi/arbetsformedlingen/dist/types/components";
-import { FormEvent, useState } from "react";
-import { postOccupationMatchesByText } from "../services/AFservice";
+} from '@digi/arbetsformedlingen/dist/types/components'
+import { FormEvent, useState } from 'react'
+import { postOccupationMatchesByText } from '../services/AFservice'
+import { IMatch } from '../models/IMatch'
 
+interface ChildProps {
+  onSearchMatch: (response: IMatch) => void // Define the type for the callback function
+}
 
-export const Form = () => {
-  const [input, setInput] = useState("");
-  const [textArea, setTextArea] = useState("");
-  const [error, setError] = useState("");
+export const Form = (props: ChildProps) => {
+  const [input, setInput] = useState('')
+  const [textArea, setTextArea] = useState('')
+  const [error, setError] = useState('')
 
   const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const response = await postOccupationMatchesByText({
-        input_text: input,
-        input_headline: textArea,
+        input_text: textArea,
+        input_headline: input,
         limit: 10,
         offset: 0,
         include_metadata: false,
-      });
-      setError("");
-      console.log(response);
+      })
+      setError('')
+      console.log(response)
+      props.onSearchMatch(response)
     } catch (error) {
-      setError("Sökningen misslyckades försök igen");
+      setError('Sökningen misslyckades försök igen')
     }
-  };
+  }
 
   const handleInputChange = (e: DigiFormInputCustomEvent<HTMLInputElement>) => {
-    setInput(e.target.value.toString());
-  };
+    setInput(e.target.value.toString())
+  }
 
   const handleTextAreaChange = (
     e: DigiFormTextareaCustomEvent<HTMLTextAreaElement>
   ) => {
-    setTextArea(e.target.value);
-  };
+    setTextArea(e.target.value)
+  }
 
   return (
     <div className="form-container">
       <form onSubmit={searchMatch}>
-
         <DigiFormInput
           className="form-input"
           afLabel="sök på utbildningstitel"
@@ -83,7 +87,6 @@ export const Form = () => {
         </DigiButton>
       </form>
       {error ? <div>{error}</div> : <div>resultat</div>}
-
     </div>
-  );
-};
+  )
+}

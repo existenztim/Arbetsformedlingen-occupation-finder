@@ -1,0 +1,7 @@
+.range-container {
+    margin: 0 auto;
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    gap: 1rem;
+}
