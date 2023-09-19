@@ -1,4 +1,4 @@
-import "../styles/form.css";
+import '../styles/form.css';
 import {
   ButtonSize,
   FormInputType,
@@ -6,12 +6,14 @@ import {
   FormInputVariation,
   FormTextareaValidation,
   FormTextareaVariation,
-} from "@digi/arbetsformedlingen";
+  LoaderSpinnerSize,
+} from '@digi/arbetsformedlingen';
 import {
   DigiButton,
   DigiFormInput,
   DigiFormTextarea,
-} from "@digi/arbetsformedlingen-react";
+  DigiLoaderSpinner,
+} from '@digi/arbetsformedlingen-react';
 import {
   DigiFormInputCustomEvent,
   DigiFormTextareaCustomEvent,
@@ -22,47 +24,59 @@ import { IMatch } from "../models/IMatch";
 
 interface FormProps {
   onSearch: (result: IMatch) => void;
+  onSearchMatch: (response: IMatch) => void;
 }
 
-export const Form = ( { onSearch }: FormProps) => {
+export const Form = ( { onSearch, onSearchMatch }: FormProps) => {
 
-  const [input, setInput] = useState("");
-  const [textArea, setTextArea] = useState("");
-  const [error, setError] = useState("");
+ const initialFormInput = {
+    input: '',
+    textArea: '',
+    error: '',
+  };
+
+  const [formInput, setFormInput] = useState(initialFormInput);
+  const [loading, setLoading] = useState(false);
 
   const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const response = await postOccupationMatchesByText({
-        input_text: input,
-        input_headline: textArea,
+        input_text: formInput.textArea,
+        input_headline: formInput.input,
         limit: 10,
         offset: 0,
         include_metadata: false,
       });
-      setError("");
+      setFormInput({ ...formInput, error: '' });
       console.log(response);
+
       onSearch(response);
+
+      onSearchMatch(response);
+
     } catch (error) {
-      setError("Sökningen misslyckades försök igen");
+      setFormInput({ ...formInput, error: `Sökningen misslyckades med felmeddelande : ${error}` });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleInputChange = (e: DigiFormInputCustomEvent<HTMLInputElement>) => {
-    setInput(e.target.value.toString());
+    setFormInput({ ...formInput, input: e.target.value.toString() });
   };
 
   const handleTextAreaChange = (
     e: DigiFormTextareaCustomEvent<HTMLTextAreaElement>
   ) => {
-    setTextArea(e.target.value);
+    setFormInput({ ...formInput, textArea: e.target.value });
   };
 
   return (
     <div className="form-container">
       <form onSubmit={searchMatch}>
-
         <DigiFormInput
           className="form-input"
           afLabel="sök på utbildningstitel"
@@ -70,14 +84,14 @@ export const Form = ( { onSearch }: FormProps) => {
           afType={FormInputType.TEXT}
           afValidation={FormInputValidation.NEUTRAL}
           onAfOnInput={handleInputChange}
-          value={input}
+          value={formInput.input}
         ></DigiFormInput>
         <DigiFormTextarea
           afLabel="sök på utbildningsbeskrivning"
           afVariation={FormTextareaVariation.MEDIUM}
           afValidation={FormTextareaValidation.NEUTRAL}
           onAfOnInput={handleTextAreaChange}
-          value={textArea}
+          value={formInput.textArea}
         ></DigiFormTextarea>
         <DigiButton
           afSize={ButtonSize.LARGE}
@@ -88,8 +102,8 @@ export const Form = ( { onSearch }: FormProps) => {
           Sök matchande yrken
         </DigiButton>
       </form>
-      {error ? <div>{error}</div> : <div>resultat</div>}
-
+      {formInput.error ? <div>{formInput.error}</div> : <div>resultat</div>}
+      {loading && <div className="loader"><DigiLoaderSpinner afSize={LoaderSpinnerSize.LARGE} /></div>}
     </div>
-  );
+  )
 };
