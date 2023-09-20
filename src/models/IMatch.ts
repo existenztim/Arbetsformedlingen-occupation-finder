@@ -7,5 +7,5 @@ export interface IMatch {
     competencies: string[];
     occupations: string[];
   };
-  related_occupation: IOccupation[];
+  related_occupations: IOccupation[];
 }

@@ -1,12 +1,19 @@
+import { useState } from 'react'
+import { IMatch } from './models/IMatch'
 import './App.css'
 import { Form } from './components/Form'
 import Header from './components/Header'
+import  SearchResults  from './components/SearchResults'
 import RangeBar from './components/RangeBar'
-import { useState } from 'react'
-import { IMatch } from './models/IMatch'
-
+        
 function App() {
-  const [responseData, setResponseData] = useState<IMatch>()
+
+  const [results, setResults] = useState<IMatch>();
+  const [responseData, setResponseData] = useState<IMatch>();
+  
+  const onSearch = (incomingResult: IMatch): void => {
+    setResults(incomingResult)
+  }
 
   const handleResponse = (data: IMatch) => {
     setResponseData(data)
@@ -23,8 +30,9 @@ function App() {
   return (
     <>
       <Header />
-      <Form onSearchMatch={handleResponse} />
+      <Form onSearch={onSearch} onSearchMatch={handleResponse}/>
       {responseData && (<RangeBar responseData={responseData} onRangeChange={handleRangeChange} />)}
+      {results ? <SearchResults result={results} /> : null} 
     </>
   )
 }

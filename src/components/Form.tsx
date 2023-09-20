@@ -17,18 +17,19 @@ import {
 import {
   DigiFormInputCustomEvent,
   DigiFormTextareaCustomEvent,
-} from '@digi/arbetsformedlingen/dist/types/components';
-import { FormEvent, useState } from 'react';
-import { postOccupationMatchesByText } from '../services/AFservice';
-import { IMatch } from '../models/IMatch';
+} from "@digi/arbetsformedlingen/dist/types/components";
+import { FormEvent, useState } from "react";
+import { postOccupationMatchesByText } from "../services/AFservice";
+import { IMatch } from "../models/IMatch";
 
-interface ChildProps {
-  onSearchMatch: (response: IMatch) => void; // Define the type for the callback function
+interface FormProps {
+  onSearch: (result: IMatch) => void;
+  onSearchMatch: (response: IMatch) => void;
 }
 
-export const Form = (props: ChildProps) => {
-  
-  const initialFormInput = {
+export const Form = ( { onSearch, onSearchMatch }: FormProps) => {
+
+ const initialFormInput = {
     input: '',
     textArea: '',
     error: '',
@@ -51,7 +52,11 @@ export const Form = (props: ChildProps) => {
       });
       setFormInput({ ...formInput, error: '' });
       console.log(response);
-      props.onSearchMatch(response);
+
+      onSearch(response);
+
+      onSearchMatch(response);
+
     } catch (error) {
       setFormInput({ ...formInput, error: `Sökningen misslyckades med felmeddelande : ${error}` });
     } finally {
@@ -74,7 +79,7 @@ export const Form = (props: ChildProps) => {
       <form onSubmit={searchMatch}>
         <DigiFormInput
           className="form-input"
-          afLabel="sök på utbildningstitel"
+          afLabel="Sök på utbildningstitel"
           afVariation={FormInputVariation.MEDIUM}
           afType={FormInputType.TEXT}
           afValidation={FormInputValidation.NEUTRAL}
@@ -82,7 +87,7 @@ export const Form = (props: ChildProps) => {
           value={formInput.input}
         ></DigiFormInput>
         <DigiFormTextarea
-          afLabel="sök på utbildningsbeskrivning"
+          afLabel="Sök på utbildningsbeskrivning"
           afVariation={FormTextareaVariation.MEDIUM}
           afValidation={FormTextareaValidation.NEUTRAL}
           onAfOnInput={handleTextAreaChange}
@@ -97,7 +102,7 @@ export const Form = (props: ChildProps) => {
           Sök matchande yrken
         </DigiButton>
       </form>
-      {formInput.error ? <div>{formInput.error}</div> : <div>resultat</div>}
+      {formInput.error && <div>{formInput.error}</div>}
       {loading && <div className="loader"><DigiLoaderSpinner afSize={LoaderSpinnerSize.LARGE} /></div>}
     </div>
   )
