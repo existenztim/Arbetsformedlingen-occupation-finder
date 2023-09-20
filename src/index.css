@@ -2,4 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --digi--global--color--profile--blue--base: #0e957c;
+  --digi--color--background--inverted-6: #12a78c;
+  --max--width--base: 800px;
 }
