@@ -17,6 +17,7 @@ p {
 .range-bar {
     position: relative;
 }
+
 .range-value {
     position: absolute;
     top: -55px; 
@@ -30,7 +31,11 @@ p {
   }
 
 .pagination-container {
-    width: 1500px;
+    border: 1px solid black;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 15px;
+    padding: 0.2rem;
 }
 
 input[type="range"] {

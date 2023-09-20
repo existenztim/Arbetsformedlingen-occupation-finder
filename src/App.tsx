@@ -19,13 +19,16 @@ function App() {
     setResponseData(data)
   }
 
-  const handleRangeChange = (value: number) => {
+  const handleRangeChange = (value: number, value2: number, value3: number) => {
+    console.log("i parent:",value2, value3)
     if (responseData) {
       setResponseData({ ...responseData, hits_returned: +value });
       setResults({
         ...responseData,
-        related_occupations: responseData.related_occupations.slice(0, +value)
+        related_occupations: responseData.related_occupations.slice(value2, value3)
+ 
       });      
+      console.log(results?.related_occupations)
     }
   }
 
