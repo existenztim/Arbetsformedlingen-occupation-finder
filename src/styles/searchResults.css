@@ -1,27 +1,27 @@
-.SR-container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    text-align: center;
+.SR-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  text-align: center;
 }
 
-.SR-matches{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-    gap: 10px;
+.SR-matches {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 10px;
 }
-.SR-matches>li:nth-child(odd) {
-    background-color: rgba(4, 74, 98, 0.467);
+.SR-matches > li:nth-child(odd) {
+  background-color: rgba(4, 74, 98, 0.467);
 }
 
-.SR-matches > li{
-    width: 90%;
-    list-style-type: none;
-    padding: 1.2rem;
-    text-align: center;
-    background-color: rgba(31, 80, 96, 0.33);
-    border-radius: 10px;
+.SR-matches > li {
+  width: 90%;
+  list-style-type: none;
+  padding: 1.2rem;
+  text-align: center;
+  background-color: rgba(31, 80, 96, 0.33);
+  border-radius: 10px;
 }
