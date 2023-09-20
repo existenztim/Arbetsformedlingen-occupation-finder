@@ -22,8 +22,10 @@ function App() {
   const handleRangeChange = (value: number) => {
     if (responseData) {
       setResponseData({ ...responseData, hits_returned: +value });
-      console.log("respons",responseData)
-      //behöver göra ett api anrop till service?
+      setResults({
+        ...responseData,
+        related_occupations: responseData.related_occupations.slice(0, +value)
+      });      
     }
   }
 
