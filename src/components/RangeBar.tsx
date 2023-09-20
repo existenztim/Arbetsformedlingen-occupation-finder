@@ -23,7 +23,7 @@ const RangeBar = ({ responseData, onRangeChange }: RangeBarProps) => {
     <div className="range-container">
       <p>Just nu visas: {responseData?.hits_returned}/{responseData?.hits_total} resultat</p>
       <div className="range-bar">
-        <p className="range-value">{rangeValue}</p>
+      <p className="range-value">{rangeValue > (responseData?.hits_returned ?? 0) ? (responseData?.hits_returned ?? 0) : rangeValue}</p>
         <input
           type="range"
           min="1"
