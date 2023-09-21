@@ -1,12 +1,11 @@
-import { IMatch } from '../models/IMatch';
+import { IMatch } from '../models/IMatch'
 import '../styles/SearchResults.css'
 import { OneResult } from './OneResult';
 
 interface SearchResultsProps {
-    result: IMatch;
+  result: IMatch
 }
 const SearchResults = ({ result }: SearchResultsProps) => {
-
     return (
         <div className='SR-container'>
             <ul className='SR-matches'>
@@ -21,4 +20,4 @@ const SearchResults = ({ result }: SearchResultsProps) => {
     )
 }
 
-export default SearchResults;
+export default SearchResults
