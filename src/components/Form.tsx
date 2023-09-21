@@ -52,7 +52,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
       const response = await postOccupationMatchesByText({
         input_text: formInput.textArea,
         input_headline: formInput.input,
-        limit: 10,
+        limit: 100,
         offset: 0,
         include_metadata: false,
       });

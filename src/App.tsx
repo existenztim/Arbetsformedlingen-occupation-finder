@@ -1,31 +1,38 @@
-import { useState } from "react";
-import { IMatch } from "./models/IMatch";
-
-import { Form } from "./components/Form";
-import Header from "./components/Header";
-import SearchResults from "./components/SearchResults";
-import RangeBar from "./components/RangeBar";
-import "./App.css";
-import "./styles/form.css";
-import "./styles/header.css";
+import { useState } from 'react'
+import { IMatch } from './models/IMatch'
+import './App.css'
+import { Form } from './components/Form'
+import Header from './components/Header'
+import SearchResults from './components/SearchResults'
+import RangeBar from './components/RangeBar'
 
 function App() {
-  const [results, setResults] = useState<IMatch>();
-  const [responseData, setResponseData] = useState<IMatch>();
+  const [results, setResults] = useState<IMatch>()
+  const [responseData, setResponseData] = useState<IMatch>()
 
   const onSearch = (incomingResult: IMatch): void => {
     setResults(incomingResult);
   };
 
-  const handleResponse = (data: IMatch) => {
-    setResponseData(data);
-  };
+  const handleResponse = (data: IMatch): void => {
+    setResponseData(data)
+  }
 
-  const handleRangeChange = (value: number) => {
+
+  const handleRangeChange = (
+    value: number,
+    startValue: number,
+    endValue: number
+  ) => {
     if (responseData) {
-      setResponseData({ ...responseData, hits_returned: +value });
-      console.log("respons", responseData);
-      //behöver göra ett api anrop till service?
+      setResponseData({ ...responseData, hits_returned: value })
+      setResults({
+        ...responseData,
+        related_occupations: responseData.related_occupations.slice(
+          startValue -1,
+          endValue
+        ),
+      })
     }
   };
 
@@ -33,7 +40,7 @@ function App() {
     <>
       <Header />
       <Form onSearch={onSearch} onSearchMatch={handleResponse} />
-      {responseData && (
+      {responseData && responseData?.hits_returned > 0 && (
         <RangeBar
           responseData={responseData}
           onRangeChange={handleRangeChange}
@@ -43,5 +50,5 @@ function App() {
     </>
   );
 }
+export default App
 
-export default App;

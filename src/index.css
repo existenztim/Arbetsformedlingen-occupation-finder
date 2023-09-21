@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-font-family: "Open Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --digi--global--color--profile--blue--base: #0e957c;
