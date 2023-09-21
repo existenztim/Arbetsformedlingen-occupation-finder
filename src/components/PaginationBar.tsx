@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { FilterContext } from "./FilterContainer";
 import { DigiNavigationPagination } from "@digi/arbetsformedlingen-react";
+import "../styles/paginationBar.css";
 
 const PaginationBar = () => {
   const filterContext = useContext(FilterContext);
   return (
-    <>
+    <div className="pagination-container">
       <DigiNavigationPagination
         afTotalPages={filterContext.totalPages}
         afInitActivePage={filterContext.pagination.currentPage}
@@ -15,7 +16,7 @@ const PaginationBar = () => {
         afResultName="resultat"
         onAfOnPageChange={filterContext.handlePaginationChange}
       ></DigiNavigationPagination>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import "./App.css";
 import { Form } from "./components/Form";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
-import RangeBar from "./components/FilterContainer";
+import FilterContainer from "./components/FilterContainer";
 
 function App() {
   const [results, setResults] = useState<IMatch>();
@@ -39,7 +39,7 @@ function App() {
       <Header />
       <Form onSearch={onSearch} onSearchMatch={handleResponse} />
       {responseData && responseData?.hits_returned > 0 && (
-        <RangeBar
+        <FilterContainer
           responseData={responseData}
           onRangeChange={handleRangeChange}
         />

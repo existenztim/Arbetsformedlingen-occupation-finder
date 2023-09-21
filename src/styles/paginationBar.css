@@ -1,0 +1,26 @@
+.pagination-container {
+  border: 1px solid black;
+  width: 100%;
+  max-width: 800px;
+
+  padding: 0.2rem;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: #ffffff;
+  opacity: 0;
+  animation: slideInAndFade 0.5s ease-out forwards;
+}
+
+@keyframes slideInAndFade {
+  0% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}

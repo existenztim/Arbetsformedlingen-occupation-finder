@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { FilterContext } from "./FilterContainer";
+import "../styles/rangeBar.css";
 
 const RangeBar = () => {
   const filterContext = useContext(FilterContext);
@@ -7,8 +8,7 @@ const RangeBar = () => {
     <div className="range-container">
       <p>
         Just nu hämtas: {filterContext.responseData?.hits_returned}/
-        {filterContext.responseData?.hits_total}
-        resultat
+        {filterContext.responseData?.hits_total} resultat
       </p>
       <div className="range-bar">
         <label htmlFor="rangeInput" className="range-value">

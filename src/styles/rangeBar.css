@@ -30,14 +30,6 @@ p {
   border-radius: var(--digi--border-radius--complementary-1);
 }
 
-.pagination-container {
-  border: 1px solid black;
-  width: 100%;
-  max-width: 800px;
-  border-radius: var(--digi--border-radius--complementary-2);
-  padding: 0.2rem;
-}
-
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;

@@ -1,6 +1,5 @@
 import { ChangeEvent, useState, useEffect, createContext } from "react";
 import { IMatch } from "../models/IMatch";
-import "../styles/rangeBar.css";
 import { DigiNavigationPaginationCustomEvent } from "@digi/arbetsformedlingen/dist/types/components";
 import { IPagination } from "../models/IPagination";
 import PaginationBar from "./PaginationBar";
