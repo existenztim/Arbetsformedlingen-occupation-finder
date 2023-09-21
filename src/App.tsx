@@ -1,48 +1,38 @@
-
-import "./App.css";
-import { Form } from "./components/Form";
-import Header from "./components/Header";
-import { DigiButton } from '@digi/arbetsformedlingen-react';
-import { getCompetenciesByOccupationId, postOccupationMatchesByText } from './services/AFservice';
-import * as AF from '@digi/arbetsformedlingen';
-
+import { useState } from 'react'
+import { IMatch } from './models/IMatch'
+import './App.css'
+import { Form } from './components/Form'
+import Header from './components/Header'
+import  SearchResults  from './components/SearchResults'
+import RangeBar from './components/RangeBar'
+        
 function App() {
-    const searchMatches = async () => {
-    try {
-      const result = await postOccupationMatchesByText({
-        input_text: "frontend", 
-        input_headline: "utvecklare", 
-        limit: 10, 
-        offset: 0, 
-        include_metadata: false});
 
-      console.log(result.data);
-    } catch (error) {
-      console.error("Error:", error);
+  const [results, setResults] = useState<IMatch>();
+  const [responseData, setResponseData] = useState<IMatch>();
+  
+  const onSearch = (incomingResult: IMatch): void => {
+    setResults(incomingResult)
+  }
+
+  const handleResponse = (data: IMatch) => {
+    setResponseData(data)
+  }
+
+  const handleRangeChange = (value: number) => {
+    if (responseData) {
+      setResponseData({ ...responseData, hits_returned: +value });   
     }
   }
 
-  const searchCompetencies = async () => {
-    try {
-      const result = await getCompetenciesByOccupationId({occupation_id: "fg7B_yov_smw", include_metadata:true});
-      console.log(result.data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
   return (
     <>
       <Header />
-      <Form />
-      <DigiButton 
-      afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchMatches}>POST occupations - se konsolen för resultat
-      </DigiButton>
-      <DigiButton 
-       afSize={AF.ButtonSize.MEDIUM} afVariation={AF.ButtonVariation.PRIMARY}afFullWidth={false} onClick={searchCompetencies}>GET competencies - se konsolen för resultat
-      </DigiButton>
-
+      <Form onSearch={onSearch} onSearchMatch={handleResponse}/>
+      {responseData && (<RangeBar responseData={responseData} onRangeChange={handleRangeChange} />)}
+      {results ? <SearchResults result={results} /> : null} 
     </>
-  );
+  )
 }
 
 export default App;
