@@ -1,23 +1,21 @@
-import { useState } from 'react'
-import { IMatch } from './models/IMatch'
-import './App.css'
-import { Form } from './components/Form'
-import Header from './components/Header'
-import SearchResults from './components/SearchResults'
-import RangeBar from './components/RangeBar'
+import { useState } from "react";
+import { IMatch } from "./models/IMatch";
+import "./App.css";
+import { Form } from "./components/Form";
+import Header from "./components/Header";
+import SearchResults from "./components/SearchResults";
+import RangeBar from "./components/FilterContainer";
 
 function App() {
-  const [results, setResults] = useState<IMatch>()
-  const [responseData, setResponseData] = useState<IMatch>()
-
+  const [results, setResults] = useState<IMatch>();
+  const [responseData, setResponseData] = useState<IMatch>();
   const onSearch = (incomingResult: IMatch): void => {
     setResults(incomingResult);
   };
 
   const handleResponse = (data: IMatch): void => {
-    setResponseData(data)
-  }
-
+    setResponseData(data);
+  };
 
   const handleRangeChange = (
     value: number,
@@ -25,14 +23,14 @@ function App() {
     endValue: number
   ) => {
     if (responseData) {
-      setResponseData({ ...responseData, hits_returned: value })
+      setResponseData({ ...responseData, hits_returned: value });
       setResults({
         ...responseData,
         related_occupations: responseData.related_occupations.slice(
-          startValue -1,
+          startValue - 1,
           endValue
         ),
-      })
+      });
     }
   };
 
@@ -50,5 +48,4 @@ function App() {
     </>
   );
 }
-export default App
-
+export default App;
