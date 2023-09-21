@@ -11,12 +11,13 @@ function App() {
   const [responseData, setResponseData] = useState<IMatch>()
 
   const onSearch = (incomingResult: IMatch): void => {
-    setResults(incomingResult)
-  }
+    setResults(incomingResult);
+  };
 
   const handleResponse = (data: IMatch): void => {
     setResponseData(data)
   }
+
 
   const handleRangeChange = (
     value: number,
@@ -33,7 +34,7 @@ function App() {
         ),
       })
     }
-  }
+  };
 
   return (
     <>
@@ -47,7 +48,7 @@ function App() {
       )}
       {results ? <SearchResults result={results} /> : null}
     </>
-  )
+  );
 }
-
 export default App
+
