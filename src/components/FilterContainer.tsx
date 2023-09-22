@@ -31,8 +31,8 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     currentStartValue: 0,
-    currentEndValue: 9,
-    itemsPerPage: 10,
+    currentEndValue: Math.min(9, responseData?.hits_returned || 0),
+    itemsPerPage: Math.min(10, responseData?.hits_returned || 0),
   });
 
   const totalPages = Math.ceil(
@@ -94,7 +94,7 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
         }}
       >
         <RangeBar></RangeBar>
-        {totalPages > 1 && <PaginationBar></PaginationBar>}
+        <PaginationBar></PaginationBar>
       </FilterContext.Provider>
     </>
   );

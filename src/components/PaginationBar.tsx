@@ -6,7 +6,7 @@ import "../styles/paginationBar.css";
 const PaginationBar = () => {
   const filterContext = useContext(FilterContext);
   return (
-    <div className="pagination-container">
+    <div className={filterContext.totalPages > 1 ? "pagination-container" : "pagination-container-hide"}>
       <DigiNavigationPagination
         afTotalPages={filterContext.totalPages}
         afInitActivePage={filterContext.pagination.currentPage}
