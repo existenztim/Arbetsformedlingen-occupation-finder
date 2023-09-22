@@ -15,7 +15,6 @@ interface IFilterContext {
   responseData: IMatch | undefined;
   totalPages: number;
   handleRangeChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleMouseUp: () => void;
   handlePaginationChange: (
     e: DigiNavigationPaginationCustomEvent<number>
   ) => void;
@@ -25,14 +24,12 @@ export const FilterContext = createContext<IFilterContext>(
 );
 
 const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
-  const [rangeValue, setRangeValue] = useState<number>(
-    responseData?.hits_returned || 0
-  );
+  const [rangeValue, setRangeValue] = useState<number>(Math.min(10, responseData?.hits_returned || 0));
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     currentStartValue: 0,
     currentEndValue: Math.min(9, responseData?.hits_returned || 0),
-    itemsPerPage: Math.min(10, responseData?.hits_returned || 0),
+    itemsPerPage: 10,
   });
 
   const totalPages = Math.ceil(
@@ -54,7 +51,8 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeValue, responseData?.hits_returned, pagination.currentPage]);
 
-  const handleMouseUp = () => {
+  const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setRangeValue(+event.target.value);
     onRangeChange(
       rangeValue,
       pagination.currentStartValue,
@@ -64,10 +62,6 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
       ...prevPagination,
       currentPage: 1,
     }));
-  };
-
-  const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setRangeValue(+event.target.value);
   };
 
   const handlePaginationChange = (
@@ -89,8 +83,7 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
           responseData: responseData,
           totalPages: totalPages,
           handlePaginationChange: handlePaginationChange,
-          handleRangeChange: handleRangeChange,
-          handleMouseUp: handleMouseUp,
+          handleRangeChange: handleRangeChange
         }}
       >
         <RangeBar></RangeBar>

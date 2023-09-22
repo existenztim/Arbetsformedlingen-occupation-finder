@@ -9,12 +9,15 @@ import FilterContainer from "./components/FilterContainer";
 function App() {
   const [results, setResults] = useState<IMatch>();
   const [responseData, setResponseData] = useState<IMatch>();
+  const [responseInstance, setResponseInstance] = useState(0);
+
   const onSearch = (incomingResult: IMatch): void => {
     setResults(incomingResult);
   };
 
   const handleResponse = (data: IMatch): void => {
     setResponseData(data);
+    setResponseInstance((prevInstance) => prevInstance + 1);
   };
 
   const handleRangeChange = (
@@ -38,8 +41,9 @@ function App() {
     <>
       <Header />
       <Form onSearch={onSearch} onSearchMatch={handleResponse} />
-      {responseData && responseData?.hits_returned > 0 && (
+      {responseData && responseData?.hits_total > 0 && (
         <FilterContainer
+          key={responseInstance}
           responseData={responseData}
           onRangeChange={handleRangeChange}
         />
