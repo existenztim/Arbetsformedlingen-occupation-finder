@@ -18,8 +18,9 @@ import {
   DigiFormInputCustomEvent,
   DigiFormTextareaCustomEvent,
 } from "@digi/arbetsformedlingen/dist/types/components";
-import { FormEvent, useState } from "react";
 import { postOccupationMatchesByText } from "../services/AFservice";
+
+import { FormEvent, useState } from "react";
 import { IMatch } from "../models/IMatch";
 
 interface FormProps {
@@ -101,43 +102,50 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
   return (
     <div className="form-container">
       <form onSubmit={searchMatch}>
-        <div className="form-elements">
-          <DigiFormInput
-            className="form-input"
-            afLabel="Sök på utbildningstitel"
-            afVariation={FormInputVariation.MEDIUM}
-            afType={FormInputType.TEXT}
-            afValidation={
-              inputValidationError || formValidationError
-                ? FormInputValidation.ERROR
-                : FormInputValidation.NEUTRAL
-            }
-            onAfOnInput={handleInputChange}
-            value={formInput.input}
-            afValidationText={inputValidationError || formValidationError}
-          />
-          <DigiFormTextarea
-            afLabel="Sök på utbildningsbeskrivning"
-            afVariation={FormTextareaVariation.MEDIUM}
-            afValidation={
-              inputValidationError || formValidationError
-                ? FormTextareaValidation.ERROR
-                : FormTextareaValidation.NEUTRAL
-            }
-            onAfOnInput={handleTextAreaChange}
-            value={formInput.textArea}
-            afValidationText={inputValidationError || formValidationError}
-          />
-          <DigiButton
-            afSize={ButtonSize.LARGE}
-            afFullWidth={false}
-            afType="submit"
-            className="form-button"
-          >
-            Sök matchande yrken
-          </DigiButton>
+        <div className="form-and-img">
+          <div className="form-elements">
+            <DigiFormInput
+              className="form-input"
+              afLabel="Sök på utbildningstitel"
+              afVariation={FormInputVariation.MEDIUM}
+              afType={FormInputType.TEXT}
+              afValidation={
+                inputValidationError || formValidationError
+                  ? FormInputValidation.ERROR
+                  : FormInputValidation.NEUTRAL
+              }
+              onAfOnInput={handleInputChange}
+              value={formInput.input}
+              afValidationText={inputValidationError || formValidationError}
+            />
+            <DigiFormTextarea
+              afLabel="Sök på utbildningsbeskrivning"
+              afVariation={FormTextareaVariation.MEDIUM}
+              afValidation={
+                inputValidationError || formValidationError
+                  ? FormTextareaValidation.ERROR
+                  : FormTextareaValidation.NEUTRAL
+              }
+              onAfOnInput={handleTextAreaChange}
+              value={formInput.textArea}
+              afValidationText={inputValidationError || formValidationError}
+            />
+            <DigiButton
+              afSize={ButtonSize.LARGE}
+              afFullWidth={false}
+              afType="submit"
+              className="form-button"
+            >
+              Sök matchande yrken
+            </DigiButton>
+          </div>
+          <div className="img">
+            {" "}
+            <img src="src/assets/chef-test-img.webp" alt="" />
+          </div>
         </div>
       </form>
+
       {formInput.error && <div>{formInput.error}</div>}
       {loading && (
         <div className="loader">

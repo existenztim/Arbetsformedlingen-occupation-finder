@@ -1,41 +1,41 @@
-import { ChangeEvent, useState, useEffect } from 'react'
-import { IMatch } from '../models/IMatch'
-import '../styles/rangeBar.css'
-import { DigiNavigationPagination } from '@digi/arbetsformedlingen-react'
-import { DigiNavigationPaginationCustomEvent } from '@digi/arbetsformedlingen/dist/types/components'
-import { IPagination } from '../models/IPagination'
+import { ChangeEvent, useState, useEffect } from "react";
+import { IMatch } from "../models/IMatch";
+import "../styles/rangeBar.css";
+import { DigiNavigationPagination } from "@digi/arbetsformedlingen-react";
+import { DigiNavigationPaginationCustomEvent } from "@digi/arbetsformedlingen/dist/types/components";
+import { IPagination } from "../models/IPagination";
 
 interface RangeBarProps {
-  responseData: IMatch | undefined
-  onRangeChange: (value: number, startValue: number, endValue: number) => void
+  responseData: IMatch | undefined;
+  onRangeChange: (value: number, startValue: number, endValue: number) => void;
 }
 
 const RangeBar = ({ responseData, onRangeChange }: RangeBarProps) => {
-  const [rangeValue, setRangeValue] = useState<number>(10)
+  const [rangeValue, setRangeValue] = useState<number>(10);
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     currentStartValue: 0,
     currentEndValue: 9,
-  })
+  });
 
-  const itemsPerPage = 10
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(
     (responseData?.hits_returned || 0) / itemsPerPage
-  )
+  );
 
   useEffect(() => {
     const newStart = (pagination.currentPage - 1) * itemsPerPage + 1;
     const maxResult = responseData?.hits_returned || 0;
-    const newEnd = Math.min(newStart + itemsPerPage -1, maxResult);
-  
+    const newEnd = Math.min(newStart + itemsPerPage - 1, maxResult);
+
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentStartValue: newStart,
       currentEndValue: newEnd,
     }));
-  
+
     onRangeChange(rangeValue, newStart, newEnd);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeValue, responseData?.hits_returned, pagination.currentPage]);
 
   const handleMouseUp = () => {
@@ -43,31 +43,31 @@ const RangeBar = ({ responseData, onRangeChange }: RangeBarProps) => {
       rangeValue,
       pagination.currentStartValue,
       pagination.currentEndValue
-    )
+    );
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: 1,
-    }))
-  }
+    }));
+  };
 
   const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setRangeValue(+event.target.value)
-  }
+    setRangeValue(+event.target.value);
+  };
 
   const handlePaginationChange = (
     e: DigiNavigationPaginationCustomEvent<number>
   ) => {
-    const newPage = e.detail
+    const newPage = e.detail;
     setPagination((prevPagination) => ({
       ...prevPagination,
       currentPage: newPage,
-    }))
-  }
+    }));
+  };
 
   return (
     <div className="range-container">
-      <p>
-        Just nu hämtas: {responseData?.hits_returned}/{responseData?.hits_total}{' '}
+      <p className="range-text">
+        Just nu hämtas: {responseData?.hits_returned}/{responseData?.hits_total}{" "}
         resultat
       </p>
       <div className="range-bar">
@@ -100,7 +100,7 @@ const RangeBar = ({ responseData, onRangeChange }: RangeBarProps) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default RangeBar
+export default RangeBar;
