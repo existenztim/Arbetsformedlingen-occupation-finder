@@ -23,7 +23,7 @@ const RangeBar = () => {
           type="range"
           min="1"
           max={responseData?.hits_total}
-          defaultValue={responseData?.hits_returned}
+          defaultValue={(Math.min(10, responseData?.hits_total || 0))}
           onChange={handleRangeChange}
         />
       </div>

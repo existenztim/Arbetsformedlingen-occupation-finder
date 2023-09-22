@@ -24,7 +24,7 @@ export const FilterContext = createContext<IFilterContext>(
 );
 
 const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
-  const [rangeValue, setRangeValue] = useState<number>(Math.min(10, responseData?.hits_returned || 0));
+  const [rangeValue, setRangeValue] = useState<number>(Math.min(10, responseData?.hits_total || 0));
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     currentStartValue: 0,
