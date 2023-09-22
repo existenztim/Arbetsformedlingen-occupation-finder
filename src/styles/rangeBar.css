@@ -30,15 +30,7 @@ p {
   border-radius: var(--digi--border-radius--complementary-1);
 }
 
-.pagination-container {
-  border: 1px solid black;
-  width: 100%;
-  max-width: 800px;
-  border-radius: var(--digi--border-radius--complementary-2);
-  padding: 0.2rem;
-}
-
-input[type='range'] {
+input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
@@ -46,17 +38,17 @@ input[type='range'] {
   width: 15rem;
 }
 
-input[type='range']:focus {
+input[type="range"]:focus {
   outline: none;
 }
 
-input[type='range']::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   background-color: #a34bb2;
   border-radius: 0.5rem;
   height: 0.5rem;
 }
 
-input[type='range']::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   margin-top: -4px;
@@ -66,18 +58,18 @@ input[type='range']::-webkit-slider-thumb {
   width: 1rem;
 }
 
-input[type='range']:focus::-webkit-slider-thumb {
+input[type="range"]:focus::-webkit-slider-thumb {
   outline: 3px solid #808080;
   outline-offset: 0.125rem;
 }
 
-input[type='range']::-moz-range-track {
+input[type="range"]::-moz-range-track {
   background-color: #a34bb2;
   border-radius: 0.5rem;
   height: 0.5rem;
 }
 
-input[type='range']::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   background-color: #808080;
   border: none;
   border-radius: 0.5rem;
@@ -85,7 +77,7 @@ input[type='range']::-moz-range-thumb {
   width: 1rem;
 }
 
-input[type='range']:focus::-moz-range-thumb {
+input[type="range"]:focus::-moz-range-thumb {
   outline: 3px solid #808080;
   outline-offset: 0.125rem;
 }

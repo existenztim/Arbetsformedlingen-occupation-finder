@@ -1,6 +1,4 @@
-# Daily Standup Report
-Mall...
-
+# Daily Standup Report 2023-09-22
     
 # Reflektion gårdagen   
 
@@ -8,12 +6,14 @@ Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
 # Tim
 
-Projekt inlett
+Separerat Pagination och Rangebar till 2 komponenter som använder samma context. + animation för
+pagination. 
 
 # Veronica
 
 Projekt 
 
-# mattias
+# Mattias
 
-Projekt inlett
+Fixat så kompetenser renderas vid knapptryck. Behöver fixa så det bara går att öppna kompetenser för 1
+yrke i taget.
