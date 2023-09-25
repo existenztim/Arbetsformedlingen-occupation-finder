@@ -42,13 +42,16 @@ const inputData = [
     percent_for_occupation: 1.8224061569737893,
   },
 ];
+const totalPercentage = inputData.reduce((sum, item) => sum + item.percent_for_occupation, 0);
+
+//labels är listan med texten som syns högst upp
 const labels = inputData.map(
-//Valfritt att ändra koden till vad vi vill, det är bara för representation, ej logik
-  item => item.term[0].toUpperCase() + item.term.slice(1, 20) + ' ' + item.percent_for_occupation.toFixed(2) + '%'
+//Valfritt att ändra koden till vad vi vill, det är bara för representation, ej logik, Gör iaf att kompetenserna tsm blir 100%
+  item => item.term[0].toUpperCase() + item.term.slice(1, 20) + ' ' + ((item.percent_for_occupation / totalPercentage) * 100).toFixed(2) + '%'
 );
 
-// Använder inputData.percent_for_occupation for data values
-const dataValues = inputData.map(item => parseFloat(item.percent_for_occupation.toFixed(1)));
+//Data är själva pajbiten.
+const dataValues = inputData.map(item => parseFloat((item.percent_for_occupation / totalPercentage * 100).toFixed(2)));
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
