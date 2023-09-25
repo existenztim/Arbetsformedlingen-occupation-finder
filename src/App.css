@@ -1,4 +1,5 @@
-body {
+html,body {
   margin: 0;
   font-family: var(--primary-font-family);
+  scroll-behavior: smooth;
 }
