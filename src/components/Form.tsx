@@ -20,74 +20,30 @@ import {
 } from "@digi/arbetsformedlingen/dist/types/components";
 import { postOccupationMatchesByText } from "../services/AFservice";
 
-import { FormEvent, useReducer, useState } from "react";
+import { FormEvent } from "react";
 import { IMatch } from "../models/IMatch";
+import { useForm } from "../reducers/formReducer";
 
 interface FormProps {
   onSearch: (result: IMatch) => void;
   onSearchMatch: (response: IMatch) => void;
 }
 
-interface State {
-  headline: string;
-  description: string;
-  error: string;
-  loading: boolean;
-  inputValidationError: string;
-  formValidationError: string;
-}
-
-type Action =
-  | {
-      type: "changed_headline" | "changed_description" | "set_error";
-      payload: string;
-      error?: Error;
-    }
-  | { type: "fetching_data" | "fetched_data"; payload?: boolean };
-
-function reducer(state: State, action: Action): State {
-  console.log("Action incoming", action);
-  const { type, payload } = action;
-  switch (type) {
-    case "changed_headline":
-      return { ...state, headline: payload };
-
-    case "changed_description":
-      return { ...state, description: payload };
-
-    case "set_error":
-      return { ...state, error: payload };
-
-    case "fetching_data":
-      return { ...state, loading: true, error: "" };
-
-    case "fetched_data":
-      return { ...state, loading: false };
-
-    default:
-      return state;
-  }
-}
-
 export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
-  const [state, dispatch] = useReducer(reducer, {
-    headline: "",
-    description: "",
-    error: "",
-    loading: false,
-    inputValidationError: "",
-    formValidationError: "",
-  });
-
-  const [inputValidationError, setInputValidationError] = useState("");
-  const [formValidationError, setFormValidationError] = useState("");
-
+  const [state, dispatch] = useForm();
   const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!state.headline.trim() || !state.description.trim()) {
-      setFormValidationError("Båda fälten måste vara ifyllda");
-      return; // Don't proceed with the API request
+    const validationErrors = { headline: "", description: "" };
+    if (!state.headline.trim()) {
+      validationErrors.headline = "Titel måste fyllas i";
+    }
+    if (!state.description.trim()) {
+      validationErrors.description = "Beskrivning måste fyllas i";
+    }
+    if (validationErrors.headline || validationErrors.description) {
+      dispatch({ type: "failed_validation", payload: validationErrors });
+      return;
     }
 
     try {
@@ -113,29 +69,14 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
 
   const handleInputChange = (e: DigiFormInputCustomEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.toString();
-
-    // Clear the form validation error when the user types in the input field
-    setFormValidationError("");
-
-    // Check if the input is 0
-    if (inputValue === "0") {
-      setInputValidationError("Input cannot be 0");
-    } else {
-      setInputValidationError(""); // Clear the input validation error
-    }
     dispatch({ type: "changed_headline", payload: inputValue });
-    // setFormInput({ ...formInput, input: inputValue });
   };
 
   const handleTextAreaChange = (
     e: DigiFormTextareaCustomEvent<HTMLTextAreaElement>
   ) => {
     const textAreaValue = e.target.value;
-
-    // Clear the form validation error when the user types in the text area
-    setFormValidationError("");
     dispatch({ type: "changed_description", payload: textAreaValue });
-    // setFormInput({ ...formInput, textArea: textAreaValue });
   };
 
   return (
@@ -149,25 +90,25 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
               afVariation={FormInputVariation.MEDIUM}
               afType={FormInputType.TEXT}
               afValidation={
-                inputValidationError || formValidationError
+                state.validationErrors.headline
                   ? FormInputValidation.ERROR
                   : FormInputValidation.NEUTRAL
               }
               onAfOnInput={handleInputChange}
               value={state.headline}
-              afValidationText={inputValidationError || formValidationError}
+              afValidationText={state.validationErrors.headline}
             />
             <DigiFormTextarea
               afLabel="Sök på utbildningsbeskrivning"
               afVariation={FormTextareaVariation.MEDIUM}
               afValidation={
-                inputValidationError || formValidationError
+                state.validationErrors.description
                   ? FormTextareaValidation.ERROR
                   : FormTextareaValidation.NEUTRAL
               }
               onAfOnInput={handleTextAreaChange}
               value={state.description}
-              afValidationText={inputValidationError || formValidationError}
+              afValidationText={state.validationErrors.description}
             />
             <DigiButton
               afSize={ButtonSize.LARGE}
