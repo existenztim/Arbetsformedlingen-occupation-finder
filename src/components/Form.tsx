@@ -20,7 +20,7 @@ import {
 } from "@digi/arbetsformedlingen/dist/types/components";
 import { postOccupationMatchesByText } from "../services/AFservice";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useReducer, useState } from "react";
 import { IMatch } from "../models/IMatch";
 
 interface FormProps {
@@ -28,47 +28,86 @@ interface FormProps {
   onSearchMatch: (response: IMatch) => void;
 }
 
-export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
-  const initialFormInput = {
-    input: "",
-    textArea: "",
-    error: "",
-  };
+interface State {
+  headline: string;
+  description: string;
+  error: string;
+  loading: boolean;
+  inputValidationError: string;
+  formValidationError: string;
+}
 
-  const [formInput, setFormInput] = useState(initialFormInput);
-  const [loading, setLoading] = useState(false);
+type Action =
+  | {
+      type: "changed_headline" | "changed_description" | "set_error";
+      payload: string;
+      error?: Error;
+    }
+  | { type: "fetching_data" | "fetched_data"; payload?: boolean };
+
+function reducer(state: State, action: Action): State {
+  console.log("Action incoming", action);
+  const { type, payload } = action;
+  switch (type) {
+    case "changed_headline":
+      return { ...state, headline: payload };
+
+    case "changed_description":
+      return { ...state, description: payload };
+
+    case "set_error":
+      return { ...state, error: payload };
+
+    case "fetching_data":
+      return { ...state, loading: true, error: "" };
+
+    case "fetched_data":
+      return { ...state, loading: false };
+
+    default:
+      return state;
+  }
+}
+
+export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
+  const [state, dispatch] = useReducer(reducer, {
+    headline: "",
+    description: "",
+    error: "",
+    loading: false,
+    inputValidationError: "",
+    formValidationError: "",
+  });
+
   const [inputValidationError, setInputValidationError] = useState("");
   const [formValidationError, setFormValidationError] = useState("");
 
   const searchMatch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formInput.input.trim() || !formInput.textArea.trim()) {
+    if (!state.headline.trim() || !state.description.trim()) {
       setFormValidationError("Båda fälten måste vara ifyllda");
       return; // Don't proceed with the API request
     }
 
     try {
-      setLoading(true);
+      dispatch({ type: "fetching_data" });
       const response = await postOccupationMatchesByText({
-        input_text: formInput.textArea,
-        input_headline: formInput.input,
+        input_text: state.description,
+        input_headline: state.headline,
         limit: 100,
         offset: 0,
         include_metadata: false,
       });
-      setFormInput({ ...formInput, error: "" });
-      console.log(response);
-
       onSearch(response);
       onSearchMatch(response);
     } catch (error) {
-      setFormInput({
-        ...formInput,
-        error: "Sökningen misslyckades, försök igen om en stund",
+      dispatch({
+        type: "set_error",
+        payload: "Sökningen misslyckades, försök igen om en stund",
       });
     } finally {
-      setLoading(false);
+      dispatch({ type: "fetched_data" });
     }
   };
 
@@ -84,8 +123,8 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
     } else {
       setInputValidationError(""); // Clear the input validation error
     }
-
-    setFormInput({ ...formInput, input: inputValue });
+    dispatch({ type: "changed_headline", payload: inputValue });
+    // setFormInput({ ...formInput, input: inputValue });
   };
 
   const handleTextAreaChange = (
@@ -95,8 +134,8 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
 
     // Clear the form validation error when the user types in the text area
     setFormValidationError("");
-
-    setFormInput({ ...formInput, textArea: textAreaValue });
+    dispatch({ type: "changed_description", payload: textAreaValue });
+    // setFormInput({ ...formInput, textArea: textAreaValue });
   };
 
   return (
@@ -115,7 +154,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
                   : FormInputValidation.NEUTRAL
               }
               onAfOnInput={handleInputChange}
-              value={formInput.input}
+              value={state.headline}
               afValidationText={inputValidationError || formValidationError}
             />
             <DigiFormTextarea
@@ -127,7 +166,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
                   : FormTextareaValidation.NEUTRAL
               }
               onAfOnInput={handleTextAreaChange}
-              value={formInput.textArea}
+              value={state.description}
               afValidationText={inputValidationError || formValidationError}
             />
             <DigiButton
@@ -146,8 +185,8 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
         </div>
       </form>
 
-      {formInput.error && <div>{formInput.error}</div>}
-      {loading && (
+      {state.error && <div>{state.error}</div>}
+      {state.loading && (
         <div className="loader">
           <DigiLoaderSpinner afSize={LoaderSpinnerSize.LARGE} />
         </div>
