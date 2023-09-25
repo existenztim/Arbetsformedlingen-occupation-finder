@@ -11,9 +11,8 @@ pagination.
 
 # Veronica
 
-Projekt 
+Undersöker libraries för diagramen. 
 
 # Mattias
 
-Fixat så kompetenser renderas vid knapptryck. Behöver fixa så det bara går att öppna kompetenser för 1
-yrke i taget.
+Fixat så kompetenser renderas vid knapptryck. Behöver fixa så det bara går att öppna kompetenser för 1 yrke i taget.

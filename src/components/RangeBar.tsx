@@ -3,28 +3,28 @@ import { FilterContext } from "./FilterContainer";
 import "../styles/rangeBar.css";
 
 const RangeBar = () => {
-  const filterContext = useContext(FilterContext);
+  const {
+    responseData,
+    rangeValue,
+    handleRangeChange,
+  } = useContext(FilterContext);
+
   return (
     <div className="range-container">
       <p>
-        Just nu hämtas: {filterContext.responseData?.hits_returned}/
-        {filterContext.responseData?.hits_total} resultat
+        Just nu hämtas: {responseData?.hits_returned}/{responseData?.hits_total} resultat
       </p>
       <div className="range-bar">
         <label htmlFor="rangeInput" className="range-value">
-          {filterContext.rangeValue >
-          (filterContext.responseData?.hits_returned ?? 0)
-            ? filterContext.responseData?.hits_returned ?? 0
-            : filterContext.rangeValue}
+          {rangeValue}
         </label>
         <input
           id="rangeInput"
           type="range"
           min="1"
-          max={filterContext.responseData?.hits_total}
-          defaultValue={filterContext.responseData?.hits_returned}
-          onMouseUp={filterContext.handleMouseUp}
-          onChange={filterContext.handleRangeChange}
+          max={responseData?.hits_total}
+          defaultValue={(Math.min(10, responseData?.hits_total || 0))}
+          onChange={handleRangeChange}
         />
       </div>
     </div>
