@@ -9,6 +9,7 @@ import {
     DigiIconArrowUp
 } from "@digi/arbetsformedlingen-react";
 import '../styles/oneResult.css'
+import ChartPie from "./ChartPie";
 
 
 
@@ -54,6 +55,7 @@ const OneResult = ({ occupation }: OneResultProps) => {
                                 return <li key={index}> -- {competence.term} -- %{competence.percent_for_occupation}</li>
                             })
                         }
+                        <ChartPie></ChartPie>
                     </ul>
                 }
                 {competencies && <button onClick={() => handleCloseBtnClick()} className="close-btn"><DigiIconArrowUp></DigiIconArrowUp></button>}
