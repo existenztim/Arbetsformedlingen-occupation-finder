@@ -1,20 +1,27 @@
 .header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 15rem;
-  background-color: #a34bb2;
+  background-image: url("src/assets/header-option-1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25rem;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .headline-container {
-  max-width: var(--max--width--base);
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  max-width: var(--width);
   margin: auto;
+  box-sizing: border-box;
 }
 
-.headline {
+.headline,
+.header-p {
   color: white;
+}
+.header-p {
+  margin-left: 2rem;
 }
