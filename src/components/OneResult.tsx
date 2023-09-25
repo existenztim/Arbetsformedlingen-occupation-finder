@@ -5,7 +5,6 @@ import { getCompetenciesByOccupationId } from "../services/AFservice"
 import { useState } from "react";
 import { AxiosResponse } from 'axios';
 import {
-    DigiButton,
     DigiLoaderSpinner,
     DigiIconArrowUp
 } from "@digi/arbetsformedlingen-react";
@@ -19,7 +18,7 @@ interface OneResultProps {
 
 const OneResult = ({ occupation }: OneResultProps) => {
     const [competencies, setCompetencies] = useState<ICompetencies>();
-    const [loading, setLoading] = useState<Boolean>();
+    const [loading, setLoading] = useState<boolean>();
 
     const getReleventCompetencies = (id: string) => {
         setLoading(true);
