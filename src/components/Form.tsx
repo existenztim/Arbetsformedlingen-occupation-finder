@@ -110,15 +110,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
               value={state.description}
               afValidationText={state.validationErrors.description}
             />
-           <a
-            href="#anchor-search"
-            onClick={() => {
-              const targetElement = document.querySelector("#anchor-search");
-              if (targetElement) {
-                targetElement.scrollIntoView();
-              }
-            }}
-          >
+         
             <DigiButton
               afSize={ButtonSize.LARGE}
               afFullWidth={false}
@@ -127,7 +119,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
             >
               Sök matchande yrken
             </DigiButton>
-          </a>
+
 
           </div>
           <div className="img">
