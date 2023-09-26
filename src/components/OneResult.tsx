@@ -57,9 +57,12 @@ const OneResult = ({ occupation }: OneResultProps) => {
     return (
         <>
             <li onClick={() => { getReleventCompetencies(occupation.concept_taxonomy_id); toggleChart(); }} className="position-relative" >
-                <div className="oneResult-closed"><h3 className="competencies-header" >{occupation.occupation_label}  {loading && <DigiLoaderSpinner />}</h3>  <button className="open-btn">{showChart ?  <DigiIconArrowUp /> : <DigiIconArrowDown /> }</button></div>
-                <div className="oneResult-main"> 
+                <div className="oneResult-closed"><h3 className="competencies-header" >{occupation.occupation_label}  {loading && <DigiLoaderSpinner />}</h3>  <button className="open-btn">{showChart ? <DigiIconArrowUp /> : <DigiIconArrowDown />}</button></div>
+                {competencies && showChart && <h4>Efterfrågade kompetenser:</h4>}
+                <div className="oneResult-main">
+
                     {competencies && showChart &&
+
                         <ChartPie chartData={competencies}></ChartPie>
                     }
                 </div>
