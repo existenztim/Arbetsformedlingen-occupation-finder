@@ -49,7 +49,8 @@ function App() {
         />
       )}
       <div id="anchor-search">
-        {results && results.hits_returned > 0 ? <SearchResults result={results} /> : <p>Inga träffar hittade.</p>}
+        {results ? <SearchResults result={results} /> : null}
+        {results && results?.hits_total < 1 && <p className="no-hit">Inga träffar hittades</p>}
       </div>
       
     </>
