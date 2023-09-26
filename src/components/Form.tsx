@@ -85,7 +85,6 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
         <div className="form-and-img">
           <div className="form-elements">
             <DigiFormInput
-              className="form-input"
               afLabel="Sök på utbildningstitel"
               afVariation={FormInputVariation.MEDIUM}
               afType={FormInputType.TEXT}
@@ -121,7 +120,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
           </div>
           <div className="img">
             {" "}
-            <img src="src/assets/chef-test-img.webp" alt="" />
+            <img src="src/assets/work-people.jpg" alt="" />
           </div>
         </div>
       </form>
