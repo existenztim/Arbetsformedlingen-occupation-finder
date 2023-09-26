@@ -48,7 +48,10 @@ function App() {
           onRangeChange={handleRangeChange}
         />
       )}
-      {results ? <SearchResults result={results} /> : null}
+      <div id="anchor-search">
+        {results && results.hits_returned > 0 ? <SearchResults result={results} /> : <p>Inga träffar hittade.</p>}
+      </div>
+      
     </>
   );
 }

@@ -111,9 +111,9 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
               afValidationText={state.validationErrors.description}
             />
            <a
-            href="#result"
+            href="#anchor-search"
             onClick={() => {
-              const targetElement = document.querySelector("#result");
+              const targetElement = document.querySelector("#anchor-search");
               if (targetElement) {
                 targetElement.scrollIntoView();
               }
