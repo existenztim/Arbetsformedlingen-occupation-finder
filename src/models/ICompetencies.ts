@@ -1,3 +1,4 @@
+import { ICompetenceShort } from './ICompetenceShort';
 export interface ICompetencies {
   id: string;
   occupation_label: string;
@@ -13,12 +14,8 @@ export interface ICompetencies {
     enriched_ads_total_count: number;
     enriched_ads_percent_of_total: number;
     enriched_candidates_term_frequency: {
-      competencies: [
-        {
-          term: string;
-          percent_for_occupation: number;
-        }
-      ];
+      competencies: ICompetenceShort[];
     };
   };
 }
+
