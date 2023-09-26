@@ -25,4 +25,5 @@
   text-align: center;
   background-color: rgba(31, 80, 96, 0.33);
   border-radius: 10px;
+  cursor: pointer;
 }
