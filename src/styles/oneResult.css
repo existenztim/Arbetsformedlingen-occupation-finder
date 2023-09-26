@@ -5,6 +5,16 @@
     background-color: transparent;
     border-style: none;
     cursor: pointer;
+    scale: 0.7;
+}
+
+.open-btn {
+    scale: 0.7;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    position: relative;
+    top: -5px;
 }
 .position-relative {
     position: relative;
@@ -17,4 +27,20 @@
 
 .competencies-header {
     cursor: pointer;
+    position: relative;
+}
+
+.oneResult-closed {
+    display: flex;
+    gap: 10px;
+}
+.oneResult-closed > button {
+    align-self: end;
+}
+
+.oneResult-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
