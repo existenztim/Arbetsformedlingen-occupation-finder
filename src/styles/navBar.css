@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  background-color: white;
+}
+
+.nav-wrap-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  color: rgb(93, 17, 90);
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.login,
+.lang,
+.search,
+.menu {
+  display: flex;
+  gap: 1rem;
+  border-right: 0.1rem solid rgb(235, 234, 234);
+  padding: 1rem;
+  align-items: center;
+}
+
+.sc-digi-icon-search-h svg.sc-digi-icon-search,
+.sc-digi-icon-user-alt-h svg.sc-digi-icon-user-alt,
+.sc-digi-icon-bars-h svg.sc-digi-icon-bars,
+.sc-digi-icon-language-outline-h svg.sc-digi-icon-language-outline {
+  width: 17px;
+  height: 17px;
+}

@@ -4,5 +4,7 @@
   font-weight: 400;
   --digi--global--color--profile--blue--base: #0e957c;
   --digi--color--background--inverted-6: #12a78c;
-  --width: 1000px;
+  --digi--global--spacing--smallest-6: 2px;
+  --digi--global--spacing--largest-4: 32px;
+  --digi--breakpoint--large: 992px;
 }

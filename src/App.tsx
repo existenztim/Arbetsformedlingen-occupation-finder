@@ -5,6 +5,8 @@ import { Form } from "./components/Form";
 import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import FilterContainer from "./components/FilterContainer";
+import {} from "@digi/arbetsformedlingen-react";
+import NavBar from "./components/NavBar";
 
 function App() {
   const [results, setResults] = useState<IMatch>();
@@ -46,6 +48,7 @@ function App() {
 
   return (
     <>
+      <NavBar />
       <Header />
       <Form onSearch={onSearch} onSearchMatch={handleResponse} />
       {responseData && responseData?.hits_total > 0 && (
