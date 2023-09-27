@@ -18,11 +18,11 @@
 
 
 .SR-matches > li {
-  width: var(--max--width--base);
   list-style-type: none;
   padding: 1.5rem;
-  text-align: center;
-  background-color: rgba(31, 80, 96, 0.33);
-  border-radius: 30px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 10px;
   cursor: pointer;
 }

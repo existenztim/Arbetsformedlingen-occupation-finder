@@ -1,6 +1,8 @@
-html,body {
+html,
+body {
   margin: 0;
   font-family: var(--primary-font-family);
+  background-color: rgb(245, 245, 245);
   scroll-behavior: smooth;
   scroll-padding-top: 8rem;
 }

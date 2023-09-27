@@ -1,0 +1,27 @@
+.footer-wrapper {
+  color: white;
+  position: fixed;
+  bottom: 0;
+  height: 5rem;
+  width: 100%;
+  background-color: rgb(71, 9, 71);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.link-wrap {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-links,
+a {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+}
