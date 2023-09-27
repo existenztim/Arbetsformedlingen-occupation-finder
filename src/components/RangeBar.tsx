@@ -15,7 +15,7 @@ const RangeBar = () => {
         Just nu hämtas: {responseData?.hits_returned}/{responseData?.hits_total} resultat
       </p>
       <div className="range-bar">
-        <label htmlFor="rangeInput" className="range-value">
+        <label htmlFor="rangeInput" className="range-value" id="result">
           {rangeValue}
         </label>
         <input
@@ -25,6 +25,7 @@ const RangeBar = () => {
           max={responseData?.hits_total}
           defaultValue={(Math.min(10, responseData?.hits_total || 0))}
           onChange={handleRangeChange}
+          aria-label="Justera antal träffar du vill visa."
         />
       </div>
     </div>
