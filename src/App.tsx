@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IMatch } from "./models/IMatch";
 import "./App.css";
 import { Form } from "./components/Form";
@@ -10,6 +10,13 @@ function App() {
   const [results, setResults] = useState<IMatch>();
   const [responseData, setResponseData] = useState<IMatch>();
   const [responseInstance, setResponseInstance] = useState(0);
+  
+  useEffect(() => {
+    const targetElement = document.getElementById("anchor-search");
+    if (targetElement) {
+      targetElement.scrollIntoView();
+    }
+  }, [results]);
 
   const onSearch = (incomingResult: IMatch): void => {
     setResults(incomingResult);
@@ -48,7 +55,11 @@ function App() {
           onRangeChange={handleRangeChange}
         />
       )}
-      {results ? <SearchResults result={results} /> : null}
+      <div id="anchor-search">
+        {results ? <SearchResults result={results} /> : null}
+        {results && results?.hits_total < 1 && <p className="no-hit">Inga träffar hittades</p>}
+      </div>
+      
     </>
   );
 }
