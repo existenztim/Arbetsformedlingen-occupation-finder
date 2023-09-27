@@ -59,7 +59,7 @@ const OneResult = ({ occupation }: OneResultProps) => {
 
                 <div className="oneResult-closed"><h3 className="competencies-header" >{occupation.occupation_label}  {loading && <DigiLoaderSpinner />}</h3>  <button aria-label="Toggla statistikvy för der detta yrke." className="open-btn">{showChart ? <DigiIconArrowUp /> : <DigiIconArrowDown />}</button></div>
                 {competencies && showChart && <h4>Efterfrågade kompetenser:</h4>}
-                <div className="oneResult-main">
+                <div className="oneResult-main z-10">
 
 
                     {competencies && showChart &&

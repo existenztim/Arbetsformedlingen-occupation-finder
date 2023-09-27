@@ -45,7 +45,7 @@ const ChartPie = ({chartData}:ChartPieProps ) => {
 
 
   return (
-    <Pie data={data} aria-label={`Ett pajdiagram med relevant data för detta yrke: ${labels}`}/> 
+    <Pie className="z-10" data={data} aria-label={`Ett pajdiagram med relevant data för detta yrke: ${labels}`}/> 
   )
 }
 
