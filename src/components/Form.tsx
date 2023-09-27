@@ -12,6 +12,7 @@ import {
   DigiButton,
   DigiFormInput,
   DigiFormTextarea,
+  DigiLayoutContainer,
   DigiLoaderSpinner,
 } from "@digi/arbetsformedlingen-react";
 import {
@@ -81,52 +82,55 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
 
   return (
     <div className="form-container">
-      <form onSubmit={searchMatch}>
-        <div className="form-and-img">
-          <div className="form-elements">
-            <DigiFormInput
-              afLabel="Sök på utbildningstitel"
-              afVariation={FormInputVariation.MEDIUM}
-              afType={FormInputType.TEXT}
-              afValidation={
-                state.validationErrors.headline
-                  ? FormInputValidation.ERROR
-                  : FormInputValidation.NEUTRAL
-              }
-              onAfOnInput={handleInputChange}
-              value={state.headline}
-              afValidationText={state.validationErrors.headline}
-            />
-            <DigiFormTextarea
-              afLabel="Sök på utbildningsbeskrivning"
-              afVariation={FormTextareaVariation.MEDIUM}
-              afValidation={
-                state.validationErrors.description
-                  ? FormTextareaValidation.ERROR
-                  : FormTextareaValidation.NEUTRAL
-              }
-              onAfOnInput={handleTextAreaChange}
-              value={state.description}
-              afValidationText={state.validationErrors.description}
-            />
-         
-            <DigiButton
-              afSize={ButtonSize.LARGE}
-              afFullWidth={false}
-              afType="submit"
-              className="form-button"
-            >
-              Sök matchande yrken
-            </DigiButton>
+      <DigiLayoutContainer>
+        <form onSubmit={searchMatch}>
+          <div className="form-and-img">
+            <div className="form-elements">
+              <DigiFormInput
+                afLabel="Sök på utbildningstitel"
+                afVariation={FormInputVariation.MEDIUM}
+                afType={FormInputType.TEXT}
+                afValidation={
+                  state.validationErrors.headline
+                    ? FormInputValidation.ERROR
+                    : FormInputValidation.NEUTRAL
+                }
+                onAfOnInput={handleInputChange}
+                value={state.headline}
+                afValidationText={state.validationErrors.headline}
+              />
+              <DigiFormTextarea
+                afLabel="Sök på utbildningsbeskrivning"
+                afVariation={FormTextareaVariation.MEDIUM}
+                afValidation={
+                  state.validationErrors.description
+                    ? FormTextareaValidation.ERROR
+                    : FormTextareaValidation.NEUTRAL
+                }
+                onAfOnInput={handleTextAreaChange}
+                value={state.description}
+                afValidationText={state.validationErrors.description}
+              />
 
-
+              <DigiButton
+                afSize={ButtonSize.LARGE}
+                afFullWidth={false}
+                afType="submit"
+                className="form-button"
+              >
+                Sök matchande yrken
+              </DigiButton>
+            </div>
+            <div className="img-wrap">
+              <img
+                className="form-img"
+                src="src/assets/work-people.jpg"
+                alt=""
+              />
+            </div>
           </div>
-          <div className="img">
-            {" "}
-            <img src="src/assets/work-people.jpg" alt="" />
-          </div>
-        </div>
-      </form>
+        </form>
+      </DigiLayoutContainer>
 
       {state.error && <div>{state.error}</div>}
       {state.loading && (

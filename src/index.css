@@ -1,12 +1,19 @@
 :root {
-  --primary-font-family: "Open Sans", sans-serif;
+  --primary--font--family: "Open Sans", sans-serif;
+  --complemetary--font-family: "Arsenal", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --digi--global--color--profile--blue--base: #0e957c;
-  --digi--color--background--inverted-6: #12a78c;
-  --digi--global--spacing--smallest-6: 2px;
-  --digi--global--spacing--largest-4: 32px;
-  --digi--breakpoint--large: 992px;
+
+  --header--color--mint: #98bcb6;
+  --complementary--color--orange: #f9a65a;
+  --base--color--dusty--white: #f5f5f5;
+  --digi--global--color--profile--blue--base: #1d93c5;
+  --digi--color--background--inverted-6: #1a83b0;
+
+  --digi--border-radius--secondary: 0.3rem;
+
+  --digi--container-width--smaller: auto;
+  box-sizing: border-box;
 }
 
 .z-10 {

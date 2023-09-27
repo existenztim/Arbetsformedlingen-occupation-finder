@@ -1,29 +1,29 @@
 .SR-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  text-align: center;
-  margin-bottom: 8rem;
+  margin-bottom: 10rem;
 }
 
 .SR-matches {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: var(--digi--breakpoint--large);
-  margin-top: 1rem;
-  gap: 10px;
-  margin: 0 auto;
-}
+  padding: 0;
 
+  gap: 10px;
+  margin: auto;
+}
 
 .SR-matches > li {
   list-style-type: none;
-  padding: 1.5rem;
+  padding: 0.5rem;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  border-radius: 10px;
+  border-radius: var(--digi--border-radius--secondary);
   cursor: pointer;
   background-color: #ffffff;
+}
+
+@media (max-width: 62rem) {
+  .SR-container {
+    padding-top: 2rem;
+  }
 }
