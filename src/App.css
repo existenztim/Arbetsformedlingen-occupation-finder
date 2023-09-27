@@ -1,4 +1,13 @@
-body {
+html,body {
   margin: 0;
   font-family: var(--primary-font-family);
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+
+.no-hit {
+  margin: 0 auto;
+  font-weight: bold;
+  text-align: center;
+  margin: 2rem;
 }

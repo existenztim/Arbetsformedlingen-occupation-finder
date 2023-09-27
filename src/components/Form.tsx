@@ -110,6 +110,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
               value={state.description}
               afValidationText={state.validationErrors.description}
             />
+         
             <DigiButton
               afSize={ButtonSize.LARGE}
               afFullWidth={false}
@@ -118,6 +119,8 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
             >
               Sök matchande yrken
             </DigiButton>
+
+
           </div>
           <div className="img">
             {" "}
