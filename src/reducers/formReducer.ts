@@ -24,7 +24,6 @@ export function useForm() {
 }
 
 export function reducer(state: IFormState, action: Action): IFormState {
-  console.log("Action incoming", action);
   const { type, payload } = action;
   switch (type) {
     case "changed_headline":

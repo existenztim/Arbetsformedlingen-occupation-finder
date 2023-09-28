@@ -49,7 +49,6 @@ const FilterContainer = ({ responseData, onRangeChange }: RangeBarProps) => {
     }));
 
     onRangeChange(rangeValue, newStart, newEnd);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeValue, responseData?.hits_returned, pagination.currentPage]); 
 
   const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => { 
