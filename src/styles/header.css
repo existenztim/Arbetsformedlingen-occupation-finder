@@ -9,9 +9,25 @@
 
 .header {
   display: flex;
-  flex-direction: column;
   height: 15rem;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blockquote {
+  font-size: 4rem;
+  font-family: "Great Vibes", cursive;
+  color: white;
+  margin: 0;
+}
+
+.text-flex {
+  display: flex;
+  align-items: baseline;
+}
+
+.header-title {
+  font-size: 2.2rem;
 }
 
 .header-title,
@@ -21,23 +37,36 @@
 }
 
 .header-quote {
-  margin-left: 1rem;
+  line-height: 2rem;
+  font-weight: 400;
 }
 
 @media (max-width: 62rem) {
   .header-container {
     width: 100%;
     margin-bottom: 2rem;
+    height: 17rem;
+    display: flex;
+
+    align-items: center;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 0;
   }
 
   .header-title {
-    padding: 0 1rem;
-    font-size: 1.4rem;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    text-align: center;
   }
 
   .header-quote {
-    padding: 1rem;
-    font-size: 1.3rem;
-    margin: 0;
+    padding-right: 0.5rem;
+    font-size: 1rem;
   }
 }

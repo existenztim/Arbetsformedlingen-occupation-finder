@@ -84,7 +84,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
     <div className="form-container">
       <DigiLayoutContainer>
         <form onSubmit={searchMatch}>
-          <div className="form-and-img">
+          <div className="form-grid">
             <div className="form-elements">
               <DigiFormInput
                 afLabel="Sök på utbildningstitel"
