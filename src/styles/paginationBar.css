@@ -1,8 +1,7 @@
-.pagination-container, .pagination-container-hide {
-  border: 1px solid black;
+.pagination-container,
+.pagination-container-hide {
   width: 100%;
-  max-width: 800px;
-  z-index: 2;
+  z-index: 9999;
   padding: 0.2rem;
   position: fixed;
   bottom: 0;
@@ -45,3 +44,7 @@
   }
 }
 
+.sc-digi-navigation-pagination-h {
+  border: none;
+  padding: 1rem;
+}

@@ -1,46 +1,26 @@
-import {
-  DigiIconBars,
-  DigiIconLanguageOutline,
-  DigiIconSearch,
-  DigiIconUserAlt,
-  DigiLayoutContainer,
-} from "@digi/arbetsformedlingen-react";
+import { DigiLayoutContainer } from "@digi/arbetsformedlingen-react";
 import "../styles/navBar.css";
 
 const NavBar = () => {
   return (
-    <div className="container">
+    <div className="nav-container">
       <DigiLayoutContainer>
         <div className="nav-wrap-flex">
-          <div>
-            <h2 className="title">Yrkesmatchningen</h2>
+          <div className="nav-text-wrap">
+            <h2 className="title">
+              <img className="logo" src="src/assets/logo.svg" alt="" />
+              YRKESMATCHNINGEN
+            </h2>
+            <p className="under-title">TRIFORCE COLLABORATION</p>
           </div>
 
-          <nav className="nav-links">
-            <div className="login">
-              <span className="login-icon">
-                <DigiIconUserAlt />
-              </span>
-              Logga in
-            </div>
-            <div className="lang">
-              <span className="lang-icon">
-                <DigiIconLanguageOutline />
-              </span>
-              Other Languages
-            </div>
-            <div className="search">
-              <span className="search-icon">
-                <DigiIconSearch />
-              </span>
-              Sök
-            </div>
-            <div className="menu">
-              <span className="menu-icon">
-                <DigiIconBars />
-              </span>
-              Meny
-            </div>
+          <nav>
+            <ul className="nav-links">
+              <li className="login"></li>
+              <li className="lang"></li>
+              <li className="search"></li>
+              <li className="menu"></li>
+            </ul>
           </nav>
         </div>
       </DigiLayoutContainer>

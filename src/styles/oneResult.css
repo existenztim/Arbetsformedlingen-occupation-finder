@@ -1,51 +1,72 @@
 .close-btn {
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
-    background-color: transparent;
-    border-style: none;
-    cursor: pointer;
-    scale: 0.7;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+  scale: 0.7;
 }
 
 .open-btn {
-    scale: 0.7;
-    background-color: transparent;
-    border-style: none;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 35px;
+  scale: 0.7;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.063rem;
+}
+
+.sc-digi-icon-arrow-down-h,
+.sc-digi-icon-arrow-up-h {
+  --digi--icon--color: var(--digi--global--color--profile--blue--base);
 }
 .position-relative {
-    position: relative;
+  position: relative;
 }
 
 .loading-competencies {
-    margin: 0 auto;
-    width: fit-content;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .competencies-header {
-    cursor: pointer;
-    position: relative;
+  padding-left: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.competencies-headline {
+  padding-left: 1rem;
 }
 
 .oneResult-closed {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
-.oneResult-closed>h3 {
-    width: 100%;
+.oneResult-closed > h3 {
+  width: 100%;
 }
-
-
 
 .oneResult-main {
-    display: flex;
-    max-width: 60%;
-    justify-content: center;
-    margin: 0 auto;
-    text-align: center;
+  display: flex;
+  max-width: 40%;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (max-width: 62rem) {
+  .open-btn {
+    display: none;
+  }
+
+  .competencies-header {
+    font-size: 1rem;
+  }
+  .competencies-header:hover {
+    color: var(--digi--color--background--inverted-6);
+  }
 }

@@ -1,6 +1,6 @@
 .range-container {
   margin: 0 auto;
-  margin-top: 5rem;
+  padding-bottom: var(--digi--global--spacing--base);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +43,7 @@ input[type="range"]:focus {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  background-color: #a34bb2;
+  background-color: var(--digi--global--color--profile--blue--base);
   border-radius: 0.5rem;
   height: 0.5rem;
 }
@@ -64,7 +64,7 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 
 input[type="range"]::-moz-range-track {
-  background-color: #a34bb2;
+  background-color: var(--digi--global--color--profile--blue--base);
   border-radius: 0.5rem;
   height: 0.5rem;
 }
@@ -80,4 +80,10 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]:focus::-moz-range-thumb {
   outline: 3px solid #808080;
   outline-offset: 0.125rem;
+}
+
+@media (max-width: 62rem) {
+  .range-container {
+    gap: 4rem;
+  }
 }
