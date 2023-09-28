@@ -1,5 +1,4 @@
 import {
-  DigiIconSearch,
   DigiLayoutContainer,
   DigiTypographyMeta,
 } from "@digi/arbetsformedlingen-react";
