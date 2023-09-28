@@ -1,17 +1,17 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/0FG3pVTS)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11866335&assignment_repo_type=AssignmentRepo)
-# Case för AF med hjälp av Jobtech
+## Kompetensökaren - Match occupations based on education title and education description
 
-I detta projekt kommer ni att välja ett av två case att arbeta med. Läs nog igenom beskrivningen av varje case innan ni bestämmer er.
+This application takes use of arbetsförmedlingens open api and designsystem by finding occupations based of user inputs (worktitles and work descriptions). All matches will in return show a graph listing the top 10 competencies for that occupation.
 
-## Case 1 - Matcha fram relaterade yrken utifrån utbildningstitel och utbildningsbeskrivning
+![Demo Image](demo/demo2.jpg)
 
-Står beskriven i cases/Case 1.pdf
 
-## Case 2 - Använd Historical job ads API:et för att söka fram de platsannonser som en viss arbetsgivare publicerat under ett visst tidsintervall
+## Codestack :
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 	![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) 	![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-Står beskriven i cases/Case 2.pdf
+![Demo Image](demo/demo1.jpg)
 
-## Observera
+## Authors
 
-Oavsett vilket case ni väljer behöver ni använda er av Arbetsförmedlingens Designsystem där ni har ett antal färdiga komponenter till ert förfogande. Det är viktigt att ni inte använder Arbetsförmedlingens färger och logotyp. Däremot får ni gärna använda er egen färgpalett och logga utefter behov.
+- [@existenztim](https://github.com/existenztim)
+- [@MattiasHeurlin](https://github.com/MattiasHeurlin)
+- [@vera83](https://github.com/vera83)

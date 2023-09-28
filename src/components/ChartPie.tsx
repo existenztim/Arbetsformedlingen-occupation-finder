@@ -16,7 +16,7 @@ const ChartPie = ({ chartData }: ChartPieProps) => {
   const labels = inputData.map(
     (item) =>
       item.term[0].toUpperCase() +
-      item.term.slice(1, 20) +
+      item.term.slice(1, 25) +
       " " +
       ((item.percent_for_occupation / totalPercentage) * 100).toFixed(2) +
       "%"
@@ -48,16 +48,22 @@ const ChartPie = ({ chartData }: ChartPieProps) => {
           "#eb2d14",
           "#ff0800",
         ],
-        borderColor: ["#fff"],
-        borderWidth: 1,
+        borderColor: ["#458bb3"],
+        borderWidth: 2,
       },
     ],
   };
 
   return (
     <Pie
-      className="z-10"
       data={data}
+      options={{
+        plugins: {
+          legend: {
+            position: "right",
+          },
+        },
+      }}
       aria-label={`Ett pajdiagram med relevant data för detta yrke: ${labels}`}
     />
   );
