@@ -1,4 +1,6 @@
 import { DigiLayoutContainer } from "@digi/arbetsformedlingen-react";
+import logo from '../assets/logo.svg'
+
 import "../styles/navBar.css";
 
 const NavBar = () => {
@@ -8,7 +10,7 @@ const NavBar = () => {
         <div className="nav-wrap-flex">
           <div className="nav-text-wrap">
             <h2 className="title">
-              <img className="logo" src="src/assets/logo.svg" alt="" />
+              <img className="logo" src={logo} alt="" />
               YRKESMATCHNINGEN
             </h2>
             <p className="under-title">TRIFORCE COLLABORATION</p>

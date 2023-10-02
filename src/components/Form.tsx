@@ -1,4 +1,5 @@
 import "../styles/form.css";
+import workpeople from '../assets/work-people.jpg';
 import {
   ButtonSize,
   FormInputType,
@@ -124,7 +125,7 @@ export const Form = ({ onSearch, onSearchMatch }: FormProps) => {
             <div className="img-wrap">
               <img
                 className="form-img"
-                src="src/assets/work-people.jpg"
+                src={workpeople}
                 alt=""
               />
             </div>
